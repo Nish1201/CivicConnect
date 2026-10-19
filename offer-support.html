@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Offer Support — CivicConnect</title>
+  <meta name="description" content="Offer mentorship, materials, funding or other support to student teams exploring community challenges.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__brand" aria-label="CivicConnect Home">
+        <img src="assets/images/logo.png" alt="CivicConnect Logo" class="brand-logo">
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="siteNav">
+        <span class="mobile-nav-toggle__icon"></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="citizen-portal.html" class="nav-link">Citizen Portal</a></li>
+          <li><a href="partner-support.html" class="nav-link active" aria-current="page">Partner Support</a></li>
+          <li><a href="student-dashboard.html" class="nav-link">Student Dashboard</a></li>
+          <li><a href="admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <header class="page-intro">
+    <div class="container">
+      <span class="section-tag">Partner Support</span>
+      <h1 class="page-intro__title">Offer Support</h1>
+      <p class="page-intro__desc">
+        Share how your organisation, lab, or expertise can help a student team exploring a community challenge.
+      </p>
+    </div>
+  </header>
+
+  <main class="report-section">
+    <div class="container">
+
+      <a href="partner-support.html" id="backLinkSupporter" class="details-back-link">
+        <span aria-hidden="true">&larr;</span> Back to Partner Support
+      </a>
+
+      <div class="report-panel">
+
+        <div id="offerConfirmation" class="report-confirmation" role="alert" style="display: none;">
+          <h2 class="report-confirmation__title">
+            <span aria-hidden="true">&#10003;</span> Support Offer Submitted
+          </h2>
+          <p class="report-confirmation__text">
+            Thank you. Your support offer has been recorded for review by CivicConnect coordinators.
+          </p>
+          <div class="report-confirmation__actions">
+            <button type="button" id="resetOfferFormBtn" class="btn btn-action">
+              Submit Another Offer
+            </button>
+            <a href="partner-support.html" class="btn btn-secondary">
+              Back to Partner Support
+            </a>
+          </div>
+        </div>
+
+        <form id="supporterOfferForm" novalidate aria-label="Partner Support Offer Form">
+
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section A</span>
+              <h2 class="form-section-heading__title">About You</h2>
+            </div>
+            <p class="form-section-intro">Tell us who you are and what kind of support you can provide.</p>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="supporterName" class="form-label">
+                  Name <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <input type="text" id="supporterName" class="form-input" required aria-describedby="supporterNameError">
+                <span id="supporterNameError" class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="supporterOrg" class="form-label">
+                  Organization / Institution <span class="optional-label">(optional)</span>
+                </label>
+                <input type="text" id="supporterOrg" class="form-input" placeholder="Company, NGO, university, lab, foundation…">
+              </div>
+
+              <div class="form-group">
+                <label for="supporterRole" class="form-label">
+                  Role / Expertise <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <input type="text" id="supporterRole" class="form-input" required aria-describedby="supporterRoleError" placeholder="e.g. Water quality engineer, CSR lead">
+                <span id="supporterRoleError" class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="supporterEmail" class="form-label">
+                  Contact Email <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <input type="email" id="supporterEmail" class="form-input" required aria-describedby="supporterEmailError">
+                <span id="supporterEmailError" class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label for="supportCapability" class="form-label">
+                  What kind of support can you provide? <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <textarea id="supportCapability" class="form-textarea" rows="3" required aria-describedby="supportCapabilityError" placeholder="Briefly describe the type of support you can offer."></textarea>
+                <span id="supportCapabilityError" class="field-error" aria-live="polite"></span>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section B</span>
+              <h2 class="form-section-heading__title">What do you want to support?</h2>
+            </div>
+            <p class="form-section-intro">Identify the challenge or project and why it matters to you.</p>
+
+            <div id="challengeContextBox" class="challenge-context-box" style="display: none;">
+              <div class="challenge-context-box__label">Selected challenge</div>
+              <div id="contextProblemTitle" class="challenge-context-box__title"></div>
+              <div id="contextProblemLocation" class="challenge-context-box__location"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="supportTarget" class="form-label">
+                Challenge / project <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <input type="text" id="supportTarget" class="form-input" required aria-describedby="supportTargetError" placeholder="Challenge title, ID, or project name">
+              <span id="supportTargetError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="whySupport" class="form-label">
+                Why are you interested? <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea id="whySupport" class="form-textarea" rows="3" required aria-describedby="whySupportError"></textarea>
+              <span id="whySupportError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="supporterExperience" class="form-label">
+                Relevant experience <span class="optional-label">(optional)</span>
+              </label>
+              <textarea id="supporterExperience" class="form-textarea" rows="3" placeholder="Past projects, domain work, or community experience"></textarea>
+            </div>
+          </div>
+
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section C</span>
+              <h2 class="form-section-heading__title">What can you provide?</h2>
+            </div>
+            <p class="form-section-intro">Select the forms of support you can offer and any conditions.</p>
+
+            <div class="form-group">
+              <span class="form-label">
+                Support types <span class="required-mark" aria-hidden="true">*</span>
+              </span>
+              <div class="checkbox-grid" id="supportOfferTypesGrid">
+                <label class="checkbox-pill"><input type="checkbox" name="supportOfferTypes" value="Technical expertise"> Technical expertise</label>
+                <label class="checkbox-pill"><input type="checkbox" name="supportOfferTypes" value="Mentorship"> Mentorship</label>
+                <label class="checkbox-pill"><input type="checkbox" name="supportOfferTypes" value="Materials/resources"> Materials / resources</label>
+                <label class="checkbox-pill"><input type="checkbox" name="supportOfferTypes" value="Lab/equipment"> Lab / equipment</label>
+                <label class="checkbox-pill"><input type="checkbox" name="supportOfferTypes" value="Field testing"> Field testing</label>
+                <label class="checkbox-pill"><input type="checkbox" name="supportOfferTypes" value="Funding/CSR support"> Funding / CSR support</label>
+                <label class="checkbox-pill"><input type="checkbox" name="supportOfferTypes" value="Industry connection"> Industry connection</label>
+                <label class="checkbox-pill"><input type="checkbox" name="supportOfferTypes" value="Other" id="supportOfferOther"> Other</label>
+              </div>
+              <span id="supportOfferTypesError" class="field-error" aria-live="polite"></span>
+              <div id="supportOfferOtherWrap" class="form-group" style="display: none; margin-top: 12px;">
+                <label for="supportOfferOtherText" class="form-label">Please describe</label>
+                <input type="text" id="supportOfferOtherText" class="form-input">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="offerDescription" class="form-label">
+                Description of your offer <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea id="offerDescription" class="form-textarea" rows="4" required aria-describedby="offerDescriptionError"></textarea>
+              <span id="offerDescriptionError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="supporterAvailability" class="form-label">
+                  Availability <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <select id="supporterAvailability" class="form-select" required aria-describedby="supporterAvailabilityError">
+                  <option value="">Select availability</option>
+                  <option value="One-time support">One-time support</option>
+                  <option value="A few hours per week">A few hours per week</option>
+                  <option value="Occasional support as needed">Occasional support as needed</option>
+                  <option value="Support for a defined period">Support for a defined period</option>
+                  <option value="Not sure yet">Not sure yet</option>
+                </select>
+                <span id="supporterAvailabilityError" class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="availabilityDetails" class="form-label">
+                  Availability details <span class="optional-label">(optional)</span>
+                </label>
+                <input type="text" id="availabilityDetails" class="form-input" placeholder="Preferred timeframe or hours">
+              </div>
+
+              <div class="form-group form-group--full">
+                <label for="offerLimits" class="form-label">
+                  Conditions / limits <span class="optional-label">(optional)</span>
+                </label>
+                <textarea id="offerLimits" class="form-textarea" rows="2" placeholder="Budget caps, geographic limits, compliance needs…"></textarea>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label for="studentRequirements" class="form-label">
+                  What you need from the student team <span class="optional-label">(optional)</span>
+                </label>
+                <textarea id="studentRequirements" class="form-textarea" rows="2" placeholder="Updates, site access, documentation, meeting schedule…"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section D</span>
+              <h2 class="form-section-heading__title">Collaboration</h2>
+            </div>
+            <p class="form-section-intro">Share short expectations for how you hope to work together.</p>
+
+            <div class="form-group">
+              <label for="collaborationExpectations" class="form-label">
+                Collaboration expectations <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea id="collaborationExpectations" class="form-textarea" rows="3" required aria-describedby="collaborationExpectationsError" placeholder="e.g. Monthly check-ins, clear problem brief, shared field visit plan"></textarea>
+              <span id="collaborationExpectationsError" class="field-error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <div class="form-actions" style="display: flex; gap: 12px; flex-wrap: wrap; margin-top: 8px;">
+            <button type="submit" class="btn btn-primary">Submit Support Offer</button>
+            <a href="partner-support.html" id="cancelOfferBtn" class="btn btn-outline-subtle">Cancel</a>
+          </div>
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer site-footer__clean">
+    <div class="container">
+      <div class="site-footer__top-row">
+        <div class="site-footer__brand-block">
+          <img src="assets/images/logo.png" alt="CivicConnect" class="footer-logo">
+          <p class="site-footer__tagline">From community challenges to shared solutions.</p>
+          <p class="site-footer__summary">
+            CivicConnect connects local challenges with students, universities, researchers and partners to explore practical solutions.
+          </p>
+        </div>
+        <div class="site-footer__nav-block">
+          <h3 class="site-footer__nav-heading">Links</h3>
+          <ul class="site-footer__links">
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="citizen-portal.html">Citizen Portal</a></li>
+            <li><a href="student-dashboard.html">Student Dashboard</a></li>
+            <li><a href="partner-support.html">Partner Support</a></li>
+            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom-line">
+        <div>&copy; 2026 CivicConnect &middot; From community challenges to shared solutions.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/offer-support.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

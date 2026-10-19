@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin Dashboard — CivicConnect</title>
+  <meta name="description" content="Platform overview of reported problems, student proposals, partner support, and active cases.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__brand" aria-label="CivicConnect Home">
+        <img src="assets/images/logo.png" alt="CivicConnect Logo" class="brand-logo">
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="siteNav">
+        <span class="mobile-nav-toggle__icon"></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="citizen-portal.html" class="nav-link">Citizen Portal</a></li>
+          <li><a href="partner-support.html" class="nav-link">Partner Support</a></li>
+          <li><a href="student-dashboard.html" class="nav-link">Student Dashboard</a></li>
+          <li><a href="admin-dashboard.html" class="nav-link active" aria-current="page">Admin Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <header class="page-intro">
+    <div class="container">
+      <span class="section-tag">Platform Coordination &amp; Review</span>
+      <h1 class="page-intro__title">Admin Dashboard</h1>
+      <p class="page-intro__desc">
+        Review reported community challenges, student proposals, partner support, and active collaboration cases across CivicConnect.
+      </p>
+    </div>
+  </header>
+
+  <main style="padding: 40px 0 60px 0;">
+    <div class="container">
+
+      <div id="adminActionNotification" style="display:none; margin-bottom: 24px; padding: 12px 18px; border-radius: 6px; background-color: var(--color-bg-sage-light); border: 1.5px solid var(--color-primary); color: var(--color-primary); font-size: 0.9rem; font-weight: 500;" role="status" aria-live="polite"></div>
+
+      <section class="dashboard-metrics-grid" aria-label="Admin Platform Statistics" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));">
+        <div class="metric-card">
+          <span class="metric-card__value" id="adminProblemsCount">0</span>
+          <span class="metric-card__label">Reported Problems</span>
+          <span class="metric-card__desc">All community challenges reported on the platform</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-card__value" id="adminReviewCount">0</span>
+          <span class="metric-card__label">Problems Under Review</span>
+          <span class="metric-card__desc">Newly reported problems awaiting further progress</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-card__value" id="adminImplementingCount">0</span>
+          <span class="metric-card__label">Solutions Being Implemented</span>
+          <span class="metric-card__desc">Active cases currently in progress</span>
+        </div>
+        <div class="metric-card">
+          <span class="metric-card__value" id="adminCollaborationCount">0</span>
+          <span class="metric-card__label">Partner Collaborations</span>
+          <span class="metric-card__desc">Partners currently connected and supporting</span>
+        </div>
+      </section>
+
+      <nav class="admin-mgmt-nav" aria-label="Management sections" role="tablist">
+        <button type="button" class="admin-mgmt-btn" data-admin-panel="problems" aria-selected="false">
+          <span class="admin-mgmt-btn__title">Reported Problems</span>
+          <span class="admin-mgmt-btn__meta" id="adminProblemsSectionCount">0 Problems</span>
+        </button>
+        <button type="button" class="admin-mgmt-btn" data-admin-panel="proposals" aria-selected="false">
+          <span class="admin-mgmt-btn__title">Student Solution Proposals</span>
+          <span class="admin-mgmt-btn__meta" id="adminProposalsSectionCount">0 Proposals</span>
+        </button>
+        <button type="button" class="admin-mgmt-btn" data-admin-panel="support" aria-selected="false">
+          <span class="admin-mgmt-btn__title">Partner Support</span>
+          <span class="admin-mgmt-btn__meta" id="adminSupportSectionCount">0 Offers</span>
+        </button>
+        <button type="button" class="admin-mgmt-btn" data-admin-panel="cases" aria-selected="false">
+          <span class="admin-mgmt-btn__title">Active Cases</span>
+          <span class="admin-mgmt-btn__meta" id="adminActiveSectionCount">0 Active Cases</span>
+        </button>
+      </nav>
+
+      <p id="adminPanelHint" class="dashboard-section__desc" style="margin: 8px 0 24px;">
+        Select a management option above to view its table.
+      </p>
+
+      <section class="dashboard-section admin-mgmt-panel" id="adminPanelProblems" data-admin-panel="problems" aria-labelledby="reportedProblemsTitle" hidden>
+        <div class="dashboard-section__header">
+          <div class="dashboard-section__title-group">
+            <h2 id="reportedProblemsTitle" class="dashboard-section__title">Reported Community Problems</h2>
+          </div>
+          <a href="explore.html" class="btn btn-outline-subtle" style="font-size: 0.85rem;">
+            Explore Public Directory &rarr;
+          </a>
+          <p class="dashboard-section__desc">
+            Ground-level problems with Problem ID, priority, location, and status.
+          </p>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table" aria-label="Table of reported community challenges">
+            <thead>
+              <tr>
+                <th scope="col">Problem ID</th>
+                <th scope="col">Title</th>
+                <th scope="col">Location</th>
+                <th scope="col">Category</th>
+                <th scope="col">Priority</th>
+                <th scope="col" class="admin-col-status">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminProblemsTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="dashboard-section admin-mgmt-panel" id="adminPanelProposals" data-admin-panel="proposals" aria-labelledby="studentSolutionsTitle" hidden>
+        <div class="dashboard-section__header">
+          <div class="dashboard-section__title-group">
+            <h2 id="studentSolutionsTitle" class="dashboard-section__title">Student Solution Proposals</h2>
+          </div>
+          <a href="student-dashboard.html" class="btn btn-outline-subtle" style="font-size: 0.85rem;">
+            Student View &rarr;
+          </a>
+          <p class="dashboard-section__desc">
+            Student proposals linked to community challenges (e.g. SP-101 &rarr; CC-001).
+          </p>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table" aria-label="Table of student solution proposals">
+            <thead>
+              <tr>
+                <th scope="col">Proposal ID</th>
+                <th scope="col">Proposal Title</th>
+                <th scope="col">Linked Problem ID</th>
+                <th scope="col">Student / Team</th>
+                <th scope="col" class="admin-col-status">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminSolutionsTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="dashboard-section admin-mgmt-panel" id="adminPanelSupport" data-admin-panel="support" aria-labelledby="supportOffersTitle" hidden>
+        <div class="dashboard-section__header">
+          <div class="dashboard-section__title-group">
+            <h2 id="supportOffersTitle" class="dashboard-section__title">Partner Support</h2>
+          </div>
+          <a href="partner-support.html" class="btn btn-outline-subtle" style="font-size: 0.85rem;">
+            Partner Hub &rarr;
+          </a>
+          <p class="dashboard-section__desc">
+            Organisations offering guidance, materials, or funding (e.g. SR-201 &rarr; CC-001).
+          </p>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table" aria-label="Table of support requests and partner offers">
+            <thead>
+              <tr>
+                <th scope="col">Support ID</th>
+                <th scope="col">Partner</th>
+                <th scope="col">Support Type</th>
+                <th scope="col">Linked Problem ID</th>
+                <th scope="col" class="admin-col-status">Status</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminSupportTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="dashboard-section admin-mgmt-panel" id="adminPanelCases" data-admin-panel="cases" aria-labelledby="activeCasesTitle" hidden>
+        <div class="dashboard-section__header">
+          <div class="dashboard-section__title-group">
+            <h2 id="activeCasesTitle" class="dashboard-section__title">Active Cases</h2>
+          </div>
+          <p class="dashboard-section__desc">
+            Connected cases linking challenges, student proposals, and partner support (e.g. CC-001 &rarr; SP-101 &rarr; SR-201).
+          </p>
+        </div>
+
+        <div class="admin-table-wrap">
+          <table class="admin-table" aria-label="Table of active collaboration cases">
+            <thead>
+              <tr>
+                <th scope="col">Case ID</th>
+                <th scope="col">Community Challenge</th>
+                <th scope="col">Student Proposal</th>
+                <th scope="col">Partner Guidance</th>
+                <th scope="col" class="admin-col-status">Stage</th>
+                <th scope="col">Action</th>
+              </tr>
+            </thead>
+            <tbody id="adminActiveCasesTableBody"></tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer site-footer__clean">
+    <div class="container">
+      <div class="site-footer__top-row">
+        <div class="site-footer__brand-block">
+          <img src="assets/images/logo.png" alt="CivicConnect" class="footer-logo">
+          <p class="site-footer__tagline">From community challenges to shared solutions.</p>
+          <p class="site-footer__summary">
+            CivicConnect connects local challenges with students, universities, researchers and partners to explore practical solutions.
+          </p>
+        </div>
+        <div class="site-footer__nav-block">
+          <h3 class="site-footer__nav-heading">Links</h3>
+          <ul class="site-footer__links">
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="citizen-portal.html">Citizen Portal</a></li>
+            <li><a href="student-dashboard.html">Student Dashboard</a></li>
+            <li><a href="partner-support.html">Partner Support</a></li>
+            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom-line">
+        <div>&copy; 2026 CivicConnect &middot; From community challenges to shared solutions.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/admin-dashboard.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

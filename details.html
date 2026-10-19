@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problem Details — CivicConnect</title>
+  <meta name="description"
+    content="View details of an example community challenge and review possible areas for exploration.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+
+<body>
+
+  <!-- ========================================================================
+       SHARED SITE HEADER
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__brand" aria-label="CivicConnect Home">
+        <img src="assets/images/logo.png" alt="CivicConnect Logo" class="brand-logo">
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false"
+        aria-controls="siteNav">
+        <span class="mobile-nav-toggle__icon"></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="citizen-portal.html" class="nav-link">Citizen Portal</a></li>
+          <li><a href="partner-support.html" class="nav-link">Partner Support</a></li>
+          <li><a href="student-dashboard.html" class="nav-link">Student Dashboard</a></li>
+          <li><a href="admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       PROBLEM DETAILS SECTION
+       ======================================================================== -->
+  <main class="details-section">
+    <div class="container">
+
+      <!-- Back Link -->
+      <a href="explore.html" class="details-back-link">
+        <span aria-hidden="true">&larr;</span> Back to Explore Problems
+      </a>
+
+      <!-- 1. Content Container (Shown when matching problem is found) -->
+      <article id="detailsContent" class="details-panel" style="display: none;" aria-labelledby="detailTitle">
+
+        <!-- Tags Header -->
+        <div class="details-panel__top">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span id="detailProblemId" class="tag-id">CC-001</span>
+            <span id="detailPriority" class="tag-priority tag-priority--critical">Critical Priority</span>
+            <span id="detailCategory" class="tag-category">Category</span>
+          </div>
+          <span id="detailStatus" class="tag-status">Status</span>
+        </div>
+
+        <!-- Problem Title -->
+        <h1 id="detailTitle" class="details-panel__title">Problem Title</h1>
+
+        <!-- Location -->
+        <div class="details-panel__location">
+          <span aria-hidden="true">&#9679;</span>
+          <span id="detailLocation">Location</span>
+        </div>
+
+        <!-- Status Progression Timeline -->
+        <div id="detailTimeline" class="status-timeline" aria-label="Challenge collaboration timeline">
+          <!-- Dynamically populated via js/details.js -->
+        </div>
+
+        <!-- Priority Evaluation Factors Card (Rule-Based, Transparent, Non-AI) -->
+        <section class="priority-factors-card" aria-labelledby="priorityFactorsTitle">
+          <div class="priority-factors-card__header">
+            <h2 id="priorityFactorsTitle" class="priority-factors-card__title">
+              <span class="motif-dot motif-dot--amber" aria-hidden="true"></span>
+              Priority &amp; Community Impact Assessment
+            </h2>
+            <span id="detailPriorityBadge" class="tag-priority tag-priority--critical">Critical Priority</span>
+          </div>
+          <div class="priority-factors-grid">
+            <div class="factor-box">
+              <div class="factor-box__label">Overall Priority</div>
+              <div id="factorPriorityVal" class="factor-box__val">Critical</div>
+            </div>
+            <div class="factor-box">
+              <div class="factor-box__label">Severity Level</div>
+              <div id="factorSeverityVal" class="factor-box__val">High</div>
+            </div>
+            <div class="factor-box">
+              <div class="factor-box__label">People Affected</div>
+              <div id="factorPeopleVal" class="factor-box__val">850</div>
+            </div>
+            <div class="factor-box">
+              <div class="factor-box__label">Risk Level</div>
+              <div id="factorRiskVal" class="factor-box__val">High</div>
+            </div>
+            <div class="factor-box">
+              <div class="factor-box__label">Reported Age</div>
+              <div id="factorAgeVal" class="factor-box__val">45 days ago</div>
+            </div>
+          </div>
+          <p id="detailPriorityReason" class="priority-summary-note">
+            Evaluation basis: High contamination severity, 850 daily consumers affected, acute health hazard, and 45 days unresolved.
+          </p>
+        </section>
+
+        <!-- Detailed Problem Description -->
+        <div class="details-block">
+          <h2 class="details-block__title">Description of the Challenge</h2>
+          <p id="detailFullDesc" class="details-block__text"></p>
+        </div>
+
+        <!-- Additional Context (Who is affected & Duration) -->
+        <div class="details-meta-grid">
+          <div>
+            <div class="meta-item-label">Who is Affected</div>
+            <div id="detailAffected" class="meta-item-value"></div>
+          </div>
+          <div>
+            <div class="meta-item-label">Observed Duration</div>
+            <div id="detailDuration" class="meta-item-value"></div>
+          </div>
+        </div>
+
+        <!-- Possible Areas to Explore (Framed as neutral exploration ideas) -->
+        <section class="exploration-box" aria-labelledby="explorationTitle">
+          <h2 id="explorationTitle" class="exploration-box__title">Possible Areas to Explore</h2>
+          <p class="exploration-box__sub">
+            The following are neutral starting points and exploratory directions that students, academic researchers,
+            and supportive partners could consider. They do not represent approved, funded, or assigned solutions.
+          </p>
+          <ul id="detailExplorationList" class="exploration-list">
+            <!-- Dynamically populated from js/details.js -->
+          </ul>
+        </section>
+
+        <!-- Student Project Request & Supporter Offer Action Section -->
+        <section class="details-action-card" aria-label="Take action on this challenge">
+          <div class="details-action-card__content">
+            <h3 class="details-action-card__title">Interested in exploring or supporting this challenge?</h3>
+            <p class="details-action-card__desc">
+              Students and university teams can submit an exploratory project proposal, while faculty, professionals,
+              and organizations can offer mentorship, advice, or support.
+            </p>
+          </div>
+          <div class="details-action-card__actions">
+            <a href="student-request.html" id="startProjectRequestBtn" class="btn btn-action">
+              Start a project request
+            </a>
+            <a href="offer-support.html" id="offerSupportBtn" class="btn btn-secondary">
+              Offer Support
+            </a>
+          </div>
+        </section>
+
+      </article>
+
+      <!-- 2. Not Found Container (Shown when ID is missing or invalid) -->
+      <div id="detailsNotFound" class="empty-state" style="display: none;" role="status">
+        <span class="empty-state__icon" aria-hidden="true">&#128269;</span>
+        <h1 class="empty-state__title">Example Challenge Not Found</h1>
+        <p class="empty-state__text">
+          We could not find the example community problem you requested. It may have an incorrect link, or no problem ID
+          was specified.
+        </p>
+        <a href="explore.html" class="btn btn-action">
+          Browse All Community Problems
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer site-footer__clean">
+    <div class="container">
+      <div class="site-footer__top-row">
+        <div class="site-footer__brand-block">
+          <img src="assets/images/logo.png" alt="CivicConnect" class="footer-logo">
+          <p class="site-footer__tagline">From community challenges to shared solutions.</p>
+          <p class="site-footer__summary">
+            CivicConnect connects local challenges with students, universities, researchers and partners to explore practical solutions.
+          </p>
+        </div>
+        <div class="site-footer__nav-block">
+          <h3 class="site-footer__nav-heading">Links</h3>
+          <ul class="site-footer__links">
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="citizen-portal.html">Citizen Portal</a></li>
+            <li><a href="student-dashboard.html">Student Dashboard</a></li>
+            <li><a href="partner-support.html">Partner Support</a></li>
+            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom-line">
+        <div>&copy; 2026 CivicConnect &middot; From community challenges to shared solutions.</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Shared Scripts & Details Logic -->
+  <script src="js/data.js"></script>
+  <script src="js/details.js"></script>
+  <script src="js/main.js"></script>
+</body>
+
+</html>

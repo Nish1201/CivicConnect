@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Solution Proposal Details — CivicConnect</title>
+  <meta name="description" content="Review student project proposal details, exploratory technical approaches, and review progress.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ========================================================================
+       SHARED SITE HEADER
+       ======================================================================== -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__brand" aria-label="CivicConnect Home">
+        <img src="assets/images/logo.png" alt="CivicConnect Logo" class="brand-logo">
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="siteNav">
+        <span class="mobile-nav-toggle__icon"></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="citizen-portal.html" class="nav-link">Citizen Portal</a></li>
+          <li><a href="partner-support.html" class="nav-link">Partner Support</a></li>
+          <li><a href="student-dashboard.html" class="nav-link active" aria-current="page">Student Dashboard</a></li>
+          <li><a href="admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ========================================================================
+       PROPOSAL DETAILS MAIN CONTENT
+       ======================================================================== -->
+  <main class="details-section">
+    <div class="container">
+
+      <!-- Back Link -->
+      <a href="student-dashboard.html" class="details-back-link">
+        <span aria-hidden="true">&larr;</span> Back to Student Dashboard
+      </a>
+
+      <!-- 1. Content Panel (Shown when proposal found) -->
+      <article id="proposalContent" class="details-panel" style="display: none;" aria-labelledby="proposalTitle">
+
+        <div class="details-panel__top">
+          <div style="display: flex; align-items: center; gap: 8px; flex-wrap: wrap;">
+            <span id="proposalIdTag" class="tag-id" style="background-color: var(--color-brand-primary); color: #fff;">Proposal ID: SP-101</span>
+            <span id="proposalStatusTag" class="tag-status">Under Review</span>
+            <span id="proposalDateTag" style="font-size: 0.85rem; color: var(--color-text-muted);">&#128197; 24 Sep 2026</span>
+          </div>
+          <span style="font-size: 0.86rem; font-family: var(--font-mono); color: var(--color-brand-accent); font-weight: 600;">
+            Linked Challenge: <a id="linkedProblemTopLink" href="#" style="color: inherit; text-decoration: underline;">CC-001</a>
+          </span>
+        </div>
+
+        <h1 id="proposalTitle" class="details-panel__title">Proposal Title</h1>
+
+        <!-- Metadata Grid -->
+        <div class="details-meta-grid" style="margin-bottom: 24px;">
+          <div>
+            <div class="meta-item-label">Student Lead / Team</div>
+            <div id="proposalLead" class="meta-item-value"></div>
+          </div>
+          <div>
+            <div class="meta-item-label">University / Institution</div>
+            <div id="proposalUniversity" class="meta-item-value"></div>
+          </div>
+          <div>
+            <div class="meta-item-label">Team Size</div>
+            <div id="proposalTeamSize" class="meta-item-value"></div>
+          </div>
+          <div>
+            <div class="meta-item-label">Linked Community Challenge</div>
+            <div id="proposalLinkedProblemName" class="meta-item-value"></div>
+          </div>
+        </div>
+
+        <!-- Proposal Status Progression Timeline -->
+        <div class="status-timeline" id="proposalTimeline" aria-label="Proposal review progression timeline">
+          <!-- Dynamically populated via script -->
+        </div>
+
+        <!-- Section 1: Solution Summary -->
+        <div class="details-block">
+          <h2 class="details-block__title">Solution Summary</h2>
+          <p id="proposalSummaryDesc" class="details-block__text"></p>
+        </div>
+
+        <!-- Section 2: Detailed Technical Plan & Approach -->
+        <div class="details-block">
+          <h2 class="details-block__title">Detailed Exploration Plan &amp; Approach</h2>
+          <p id="proposalDetailedPlan" class="details-block__text"></p>
+        </div>
+
+        <!-- Section 3: Requested Support -->
+        <section class="exploration-box" aria-labelledby="supportNeededTitle">
+          <h2 id="supportNeededTitle" class="exploration-box__title">Requested Partner &amp; Technical Support</h2>
+          <p id="proposalRequestedSupport" class="exploration-box__sub" style="font-size: 0.95rem; color: var(--color-text-main); line-height: 1.6;"></p>
+        </section>
+
+        <!-- Actions Section -->
+        <section class="details-action-card" aria-label="Proposal actions">
+          <div class="details-action-card__content">
+            <h3 class="details-action-card__title">Connected Community Challenge Context</h3>
+            <p class="details-action-card__desc">
+              Review the original ground-level community challenge described by residents that inspired this student exploratory solution proposal.
+            </p>
+          </div>
+          <div class="details-action-card__actions">
+            <a href="#" id="viewLinkedProblemBtn" class="btn btn-action">
+              View Original Problem &rarr;
+            </a>
+            <a href="student-dashboard.html" class="btn btn-secondary">
+              Back to Dashboard
+            </a>
+          </div>
+        </section>
+
+      </article>
+
+      <!-- 2. Not Found Container -->
+      <div id="proposalNotFound" class="empty-state" style="display: none;" role="status">
+        <span class="empty-state__icon" aria-hidden="true">&#128269;</span>
+        <h1 class="empty-state__title">Student Proposal Not Found</h1>
+        <p class="empty-state__text">
+          We could not find the student proposal record you requested. Please verify the Proposal ID.
+        </p>
+        <a href="student-dashboard.html" class="btn btn-action">
+          Back to Student Dashboard
+        </a>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ========================================================================
+       SHARED SITE FOOTER
+       ======================================================================== -->
+  <footer class="site-footer site-footer__clean">
+    <div class="container">
+      <div class="site-footer__top-row">
+        <div class="site-footer__brand-block">
+          <img src="assets/images/logo.png" alt="CivicConnect" class="footer-logo">
+          <p class="site-footer__tagline">From community challenges to shared solutions.</p>
+          <p class="site-footer__summary">
+            CivicConnect connects local challenges with students, universities, researchers and partners to explore practical solutions.
+          </p>
+        </div>
+        <div class="site-footer__nav-block">
+          <h3 class="site-footer__nav-heading">Links</h3>
+          <ul class="site-footer__links">
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="citizen-portal.html">Citizen Portal</a></li>
+            <li><a href="student-dashboard.html">Student Dashboard</a></li>
+            <li><a href="partner-support.html">Partner Support</a></li>
+            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom-line">
+        <div>&copy; 2026 CivicConnect &middot; From community challenges to shared solutions.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/main.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const propId = urlParams.get('id') || 'SP-101';
+
+      const proposal = (typeof findProposalById === 'function') 
+        ? findProposalById(propId)
+        : (SAMPLE_STUDENT_PROPOSALS || []).find(p => p.id === propId);
+
+      const contentBox = document.getElementById('proposalContent');
+      const notFoundBox = document.getElementById('proposalNotFound');
+
+      if (!proposal) {
+        if (contentBox) contentBox.style.display = 'none';
+        if (notFoundBox) notFoundBox.style.display = 'block';
+        return;
+      }
+
+      if (contentBox) contentBox.style.display = 'block';
+      if (notFoundBox) notFoundBox.style.display = 'none';
+
+      document.title = `${proposal.id}: ${proposal.solutionTitle} — CivicConnect`;
+
+      document.getElementById('proposalIdTag').textContent = `Proposal: ${proposal.id}`;
+      document.getElementById('proposalTitle').textContent = proposal.solutionTitle;
+      document.getElementById('proposalLead').textContent = proposal.student;
+      document.getElementById('proposalUniversity').textContent = proposal.university;
+      document.getElementById('proposalTeamSize').textContent = `${proposal.teamSize || 4} Members`;
+      document.getElementById('proposalDateTag').textContent = `Submitted: ${proposal.date}`;
+      document.getElementById('proposalLinkedProblemName').textContent = `${proposal.problemId} — ${proposal.problemTitle}`;
+
+      const topLink = document.getElementById('linkedProblemTopLink');
+      if (topLink) {
+        topLink.textContent = proposal.problemId;
+        topLink.href = `details.html?id=${encodeURIComponent(proposal.problemId)}`;
+      }
+
+      const viewProbBtn = document.getElementById('viewLinkedProblemBtn');
+      if (viewProbBtn) {
+        viewProbBtn.href = `details.html?id=${encodeURIComponent(proposal.problemId)}`;
+        viewProbBtn.textContent = `View Original Problem (${proposal.problemId}) \u2192`;
+      }
+
+      const statusTag = document.getElementById('proposalStatusTag');
+      if (statusTag) {
+        statusTag.textContent = proposal.status;
+        let badgeClass = 'tag-status--review';
+        const s = proposal.status.toLowerCase();
+        if (s.includes('shortlist')) badgeClass = 'tag-status--shortlisted';
+        else if (s.includes('accept') || s.includes('implement')) badgeClass = 'tag-status--accepted';
+        statusTag.className = `tag-status ${badgeClass}`;
+      }
+
+      document.getElementById('proposalSummaryDesc').textContent = proposal.description;
+      document.getElementById('proposalDetailedPlan').textContent = proposal.detailedPlan || proposal.description;
+      document.getElementById('proposalRequestedSupport').textContent = proposal.requestedSupport || "General academic and technical mentorship.";
+
+      // Status Progression Timeline
+      const timelineEl = document.getElementById('proposalTimeline');
+      if (timelineEl) {
+        const steps = ["Submitted", "Under Review", "Shortlisted", "Accepted", "Implemented"];
+        const activeIdx = (typeof proposal.stepIndex === 'number') ? proposal.stepIndex : 1;
+
+        timelineEl.innerHTML = '';
+        steps.forEach((stepName, idx) => {
+          const stepDiv = document.createElement('div');
+          let stateClass = '';
+          if (idx < activeIdx) stateClass = 'timeline-step--completed';
+          else if (idx === activeIdx) stateClass = 'timeline-step--current';
+
+          stepDiv.className = `timeline-step ${stateClass}`;
+          stepDiv.innerHTML = `
+            <div class="timeline-step__dot">${idx < activeIdx ? '&#10003;' : (idx + 1)}</div>
+            <div class="timeline-step__label">${stepName}</div>
+          `;
+          timelineEl.appendChild(stepDiv);
+        });
+      }
+    });
+  </script>
+</body>
+</html>

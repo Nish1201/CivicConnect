@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Explore Community Problems — CivicConnect</title>
+  <meta name="description" content="Browse community challenges from across India. Search by keyword or filter by category and status.">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__brand" aria-label="CivicConnect Home">
+        <img src="assets/images/logo.png" alt="CivicConnect" class="brand-logo">
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="siteNav">
+        <span class="mobile-nav-toggle__icon"></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link active" aria-current="page">Explore</a></li>
+          <li><a href="citizen-portal.html" class="nav-link">Citizen Portal</a></li>
+          <li><a href="partner-support.html" class="nav-link">Partner Support</a></li>
+          <li><a href="student-dashboard.html" class="nav-link">Student Dashboard</a></li>
+          <li><a href="admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <header class="page-intro">
+    <div class="container">
+      <span class="section-tag">Community Directory</span>
+      <h1 class="page-intro__title">Explore Community Problems</h1>
+      <p class="page-intro__desc">
+        Browse verified community challenges across India. Use search, geographic filters, category, priority and the map to find challenges where universities and partners can collaborate.
+      </p>
+    </div>
+  </header>
+
+  <main class="explore-section">
+    <div class="container">
+
+      <section class="filter-bar" aria-label="Search and Filter Controls">
+        <div class="filter-bar__top">
+          <div class="search-field-wrap">
+            <span class="search-icon" aria-hidden="true"></span>
+            <input
+              type="text"
+              id="problemSearchInput"
+              placeholder="Search by ID, title, description, location, or keyword..."
+              aria-label="Search community problems">
+          </div>
+
+          <div class="filter-selects-wrap">
+            <div class="filter-control">
+              <label for="stateFilter">State</label>
+              <select id="stateFilter" aria-label="Filter by state">
+                <option value="all">All States</option>
+              </select>
+            </div>
+
+            <div class="filter-control">
+              <label for="districtFilter">District</label>
+              <select id="districtFilter" aria-label="Filter by district">
+                <option value="all">All Districts</option>
+              </select>
+            </div>
+
+            <div class="filter-control">
+              <label for="categoryFilter">Category</label>
+              <select id="categoryFilter" aria-label="Filter by category">
+                <option value="all">All Categories</option>
+                <option value="Water">Water</option>
+                <option value="Agriculture">Agriculture</option>
+                <option value="Education">Education</option>
+                <option value="Healthcare">Healthcare</option>
+                <option value="Sanitation">Sanitation</option>
+                <option value="Environment">Environment</option>
+                <option value="Rural Livelihoods">Rural Livelihoods</option>
+                <option value="Accessibility">Accessibility</option>
+                <option value="Infrastructure">Infrastructure</option>
+                <option value="Public Services">Public Services</option>
+                <option value="Other">Other</option>
+                <option value="Not sure">Not sure</option>
+              </select>
+            </div>
+
+            <div class="filter-control">
+              <label for="priorityFilter">Priority</label>
+              <select id="priorityFilter" aria-label="Filter by priority">
+                <option value="all">All Priorities</option>
+                <option value="Critical">Critical</option>
+                <option value="High">High</option>
+                <option value="Medium">Medium</option>
+                <option value="Low">Low</option>
+              </select>
+            </div>
+
+            <div class="filter-control">
+              <label for="statusFilter">Status</label>
+              <select id="statusFilter" aria-label="Filter by status">
+                <option value="all">All Statuses</option>
+                <option value="New">New</option>
+                <option value="Exploring">Exploring</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-bar__bottom">
+          <div id="resultsCount" class="filter-results-count" aria-live="polite">
+            Showing community challenges
+          </div>
+          <button type="button" id="clearFiltersBtn" class="btn btn-outline-subtle">
+            Clear Filters
+          </button>
+        </div>
+      </section>
+
+      <div class="explore-layout-grid">
+        <div class="explore-results-col">
+          <div id="problemsContainer" class="problems-grid" aria-label="List of community challenges">
+          </div>
+
+          <div id="emptyState" class="empty-state" style="display: none;" role="status">
+            <h2 class="empty-state__title">No matching challenges found</h2>
+            <p class="empty-state__text">
+              No community problems match your current search terms or filter selection. Try adjusting keywords or clearing filters.
+            </p>
+            <button type="button" id="resetEmptyBtn" class="btn btn-action">
+              Reset All Filters
+            </button>
+          </div>
+        </div>
+
+        <div class="explore-map-col">
+          <section class="explore-map-card" aria-label="Community Challenges Map">
+            <div class="explore-map-card__header">
+              <h2 class="explore-map-card__title">
+                <span class="motif-dot motif-dot--teal" aria-hidden="true"></span>
+                Geographic Map
+              </h2>
+              <span class="explore-map-card__badge">Map View</span>
+            </div>
+            <div id="exploreMap" class="explore-map-container" role="region" aria-label="Map showing locations of community challenges across India"></div>
+          </section>
+        </div>
+      </div>
+
+      <div style="margin-top: 48px; display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 24px;">
+        <aside class="action-card" aria-label="Citizen Portal callout">
+          <div>
+            <h3 class="action-card__title">Observe a challenge in your community?</h3>
+            <p class="action-card__desc">
+              Describe a local issue in everyday language so universities, researchers and partners can explore practical collaborative solutions.
+            </p>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="citizen-portal.html" class="btn btn-primary">Citizen Portal</a>
+            <a href="report.html" class="btn btn-secondary">Report a Problem</a>
+          </div>
+        </aside>
+
+        <aside class="action-card" style="background-color: var(--color-bg-sage-light);" aria-label="Student and partner opportunities">
+          <div>
+            <h3 class="action-card__title">Ready to explore or support solutions?</h3>
+            <p class="action-card__desc">
+              Students can propose exploratory approaches, while organisations and mentors can provide technical or resource support.
+            </p>
+          </div>
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="student-dashboard.html" class="btn btn-primary">Student Dashboard</a>
+            <a href="partner-support.html" class="btn btn-secondary">Partner Support</a>
+          </div>
+        </aside>
+      </div>
+
+    </div>
+  </main>
+
+  <footer class="site-footer site-footer__clean">
+    <div class="container">
+      <div class="site-footer__top-row">
+        <div class="site-footer__brand-block">
+          <img src="assets/images/logo.png" alt="CivicConnect" class="footer-logo">
+          <p class="site-footer__tagline">From community challenges to shared solutions.</p>
+          <p class="site-footer__summary">
+            CivicConnect connects local challenges with students, universities, researchers and partners to explore practical solutions.
+          </p>
+        </div>
+        <div class="site-footer__nav-block">
+          <h3 class="site-footer__nav-heading">Links</h3>
+          <ul class="site-footer__links">
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="citizen-portal.html">Citizen Portal</a></li>
+            <li><a href="student-dashboard.html">Student Dashboard</a></li>
+            <li><a href="partner-support.html">Partner Support</a></li>
+            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom-line">
+        <div>&copy; 2026 CivicConnect &middot; From community challenges to shared solutions.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+  <script src="js/data.js"></script>
+  <script src="js/explore.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

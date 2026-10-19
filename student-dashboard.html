@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Dashboard — CivicConnect</title>
+  <meta name="description" content="Your student team workspace for exploring challenges and tracking your solution proposal.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__brand" aria-label="CivicConnect Home">
+        <img src="assets/images/logo.png" alt="CivicConnect" class="brand-logo">
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="siteNav">
+        <span class="mobile-nav-toggle__icon"></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="citizen-portal.html" class="nav-link">Citizen Portal</a></li>
+          <li><a href="partner-support.html" class="nav-link">Partner Support</a></li>
+          <li><a href="student-dashboard.html" class="nav-link active" aria-current="page">Student Dashboard</a></li>
+          <li><a href="admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <header class="page-intro">
+    <div class="container">
+      <span class="section-tag">Your Team Workspace</span>
+      <h1 class="page-intro__title">Student Dashboard</h1>
+      <p class="page-intro__desc" id="studentTeamIntro">
+        Explore community problems and track the solution proposal submitted by your team.
+      </p>
+    </div>
+  </header>
+
+  <main style="padding: 40px 0 60px 0;">
+    <div class="container">
+
+      <div class="action-pathway-grid">
+        <article class="action-pathway-card">
+          <span class="action-pathway-card__eyebrow">Discover</span>
+          <h2 class="action-pathway-card__title">Explore Problems</h2>
+          <p class="action-pathway-card__desc">
+            Browse community challenges and find a problem that matches your skills.
+          </p>
+          <a href="explore.html" class="btn btn-action">Explore Problems</a>
+        </article>
+
+        <article class="action-pathway-card action-pathway-card--accent">
+          <span class="action-pathway-card__eyebrow">Contribute</span>
+          <h2 class="action-pathway-card__title">Provide a Solution</h2>
+          <p class="action-pathway-card__desc">
+            Submit a solution proposal linked to a community problem.
+          </p>
+          <a href="student-request.html" class="btn btn-secondary">Provide a Solution</a>
+        </article>
+      </div>
+
+      <section class="dashboard-section" aria-labelledby="myProposalTitle">
+        <div class="dashboard-section__header">
+          <div class="dashboard-section__title-group">
+            <h2 id="myProposalTitle" class="dashboard-section__title">My Solution Proposal</h2>
+          </div>
+        </div>
+
+        <div id="studentProposalContainer" class="proposals-list" aria-label="Your solution proposal">
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer site-footer__clean">
+    <div class="container">
+      <div class="site-footer__top-row">
+        <div class="site-footer__brand-block">
+          <img src="assets/images/logo.png" alt="CivicConnect" class="footer-logo">
+          <p class="site-footer__tagline">From community challenges to shared solutions.</p>
+          <p class="site-footer__summary">
+            CivicConnect connects local challenges with students, universities, researchers and partners to explore practical solutions.
+          </p>
+        </div>
+        <div class="site-footer__nav-block">
+          <h3 class="site-footer__nav-heading">Links</h3>
+          <ul class="site-footer__links">
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="citizen-portal.html">Citizen Portal</a></li>
+            <li><a href="student-dashboard.html">Student Dashboard</a></li>
+            <li><a href="partner-support.html">Partner Support</a></li>
+            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom-line">
+        <div>&copy; 2026 CivicConnect &middot; From community challenges to shared solutions.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/student-dashboard.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

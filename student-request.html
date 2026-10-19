@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Solution Proposal — CivicConnect</title>
+  <meta name="description" content="Submit a student solution proposal for a community challenge as an academic project or research inquiry.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__brand" aria-label="CivicConnect Home">
+        <img src="assets/images/logo.png" alt="CivicConnect Logo" class="brand-logo">
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="siteNav">
+        <span class="mobile-nav-toggle__icon"></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="citizen-portal.html" class="nav-link">Citizen Portal</a></li>
+          <li><a href="partner-support.html" class="nav-link">Partner Support</a></li>
+          <li><a href="student-dashboard.html" class="nav-link">Student Dashboard</a></li>
+          <li><a href="admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <header class="page-intro">
+    <div class="container">
+      <span class="section-tag">Student Opportunities</span>
+      <h1 class="page-intro__title">Submit a Solution Proposal</h1>
+      <p class="page-intro__desc">
+        Share your team’s understanding of a community challenge, your proposed approach, and the support you may need. A proposal is a starting point for review—not a confirmed collaboration.
+      </p>
+    </div>
+  </header>
+
+  <main class="report-section">
+    <div class="container">
+
+      <a href="explore.html" id="backLink" class="details-back-link">
+        <span aria-hidden="true">&larr;</span> Back to Explore Challenges
+      </a>
+
+      <div class="report-panel">
+
+        <div id="requestConfirmation" class="report-confirmation" role="alert" style="display: none;">
+          <h2 class="report-confirmation__title">
+            <span aria-hidden="true">&#10003;</span> Proposal Submitted
+          </h2>
+          <p class="report-confirmation__text">
+            Thank you for submitting your solution proposal. Coordinators can review your team’s approach and connect you with relevant mentors or partners as next steps take shape.
+          </p>
+          <div class="report-confirmation__actions">
+            <button type="button" id="resetRequestFormBtn" class="btn btn-primary">
+              Submit Another Proposal
+            </button>
+            <a href="explore.html" class="btn btn-secondary">
+              Back to Explore Challenges
+            </a>
+          </div>
+        </div>
+
+        <form id="studentRequestForm" novalidate aria-label="Student Solution Proposal Form">
+
+          <!-- Section A — Your Team -->
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section A</span>
+              <h2 class="form-section-heading__title">Your Team</h2>
+            </div>
+            <p class="form-section-intro">Tell us about your project, institution, and who will be the primary contact.</p>
+
+            <div id="challengeContextBox" class="challenge-context-box" style="display: none;">
+              <div class="challenge-context-box__tag">Selected Challenge Context</div>
+              <div id="contextProblemTitle" class="challenge-context-box__title"></div>
+              <div id="contextProblemLocation" class="challenge-context-box__location"></div>
+            </div>
+
+            <div class="form-group">
+              <label for="projectTitle" class="form-label">
+                Project Title <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="projectTitle"
+                class="form-input"
+                placeholder="e.g. Low-Cost Sand and Charcoal Filter for Borewells"
+                required
+                aria-describedby="projectTitleHelp projectTitleError">
+              <span id="projectTitleHelp" class="form-helper">Give your proposed project a clear, concise name.</span>
+              <span id="projectTitleError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group" id="challengeTopicGroup">
+              <label for="challengeTopic" class="form-label">
+                Challenge <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="challengeTopic"
+                class="form-input"
+                placeholder="e.g. Seasonal Borewell Silt or enter challenge title"
+                required
+                aria-describedby="challengeTopicHelp challengeTopicError"
+                list="challengeTopicSuggestions">
+              <datalist id="challengeTopicSuggestions">
+                <option value="Water"></option>
+                <option value="Agriculture"></option>
+                <option value="Education"></option>
+                <option value="Healthcare"></option>
+                <option value="Sanitation"></option>
+                <option value="Environment"></option>
+                <option value="Rural Livelihoods"></option>
+                <option value="Accessibility"></option>
+                <option value="Infrastructure"></option>
+                <option value="Public Services"></option>
+              </datalist>
+              <span id="challengeTopicHelp" class="form-helper">Enter the community challenge title or topic your team wants to explore.</span>
+              <span id="challengeTopicError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="institution" class="form-label">
+                  College / University <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="institution"
+                  class="form-input"
+                  placeholder="e.g. Government Engineering College, Pune"
+                  required
+                  aria-describedby="institutionError">
+                <span id="institutionError" class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="teamName" class="form-label">
+                  Team Name <span class="optional-label">(Optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="teamName"
+                  class="form-input"
+                  placeholder="e.g. JalShakti Innovation Group">
+              </div>
+
+              <div class="form-group">
+                <label for="teamSize" class="form-label">
+                  Team Size <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="number"
+                  id="teamSize"
+                  class="form-input"
+                  min="1"
+                  max="20"
+                  placeholder="1–20"
+                  required
+                  aria-describedby="teamSizeHelp teamSizeError">
+                <span id="teamSizeHelp" class="form-helper">Total number of students (1–20).</span>
+                <span id="teamSizeError" class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="contactPerson" class="form-label">
+                  Contact Person <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="text"
+                  id="contactPerson"
+                  class="form-input"
+                  placeholder="Full name of the designated student lead"
+                  required
+                  aria-describedby="contactPersonError">
+                <span id="contactPersonError" class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label for="teamMembers" class="form-label">
+                  Team Members <span class="optional-label">(Optional)</span>
+                </label>
+                <textarea
+                  id="teamMembers"
+                  class="form-textarea"
+                  rows="3"
+                  placeholder="e.g. Student A (Field research), Student B (Hardware), Student C (Documentation)"></textarea>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label for="contactEmail" class="form-label">
+                  Contact Email <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <input
+                  type="email"
+                  id="contactEmail"
+                  class="form-input"
+                  placeholder="student.lead@college.edu"
+                  required
+                  aria-describedby="contactEmailError">
+                <span id="contactEmailError" class="field-error" aria-live="polite"></span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section B — Understanding -->
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section B</span>
+              <h2 class="form-section-heading__title">Understanding</h2>
+            </div>
+            <p class="form-section-intro">Show how your team understands the problem, who is affected, and what gap remains.</p>
+
+            <div class="form-group">
+              <label for="specificProblem" class="form-label">
+                Specific Problem <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="specificProblem"
+                class="form-textarea"
+                rows="3"
+                placeholder="Describe the specific problem your team is focusing on..."
+                required
+                aria-describedby="specificProblemError"></textarea>
+              <span id="specificProblemError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="whoAffected" class="form-label">
+                Who Is Affected <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="whoAffected"
+                class="form-textarea"
+                rows="2"
+                placeholder="e.g. Farming households, school students, nearby residents..."
+                required
+                aria-describedby="whoAffectedError"></textarea>
+              <span id="whoAffectedError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="currentGap" class="form-label">
+                Current Gap / Limitation <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="currentGap"
+                class="form-textarea"
+                rows="3"
+                placeholder="What is missing today—tools, access, awareness, infrastructure, or process?"
+                required
+                aria-describedby="currentGapError"></textarea>
+              <span id="currentGapError" class="field-error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <!-- Section C — Proposed Solution -->
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section C</span>
+              <h2 class="form-section-heading__title">Proposed Solution</h2>
+            </div>
+            <p class="form-section-intro">Outline your approach, how it works, and how it could be explored or validated.</p>
+
+            <div class="form-group">
+              <label for="proposedSolution" class="form-label">
+                Describe Your Solution <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="proposedSolution"
+                class="form-textarea"
+                rows="4"
+                placeholder="Explain what your team proposes to try or build..."
+                required
+                aria-describedby="proposedSolutionError"></textarea>
+              <span id="proposedSolutionError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="approachDifference" class="form-label">
+                What Makes Your Approach Different <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="approachDifference"
+                class="form-textarea"
+                rows="3"
+                placeholder="How does your idea differ from existing options or common practice?"
+                required
+                aria-describedby="approachDifferenceError"></textarea>
+              <span id="approachDifferenceError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="howItWorks" class="form-label">
+                How It Works <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="howItWorks"
+                class="form-textarea"
+                rows="3"
+                placeholder="Describe the main steps, components, or process..."
+                required
+                aria-describedby="howItWorksError"></textarea>
+              <span id="howItWorksError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="validationPlan" class="form-label">
+                How Can It Be Explored / Tested / Validated? <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="validationPlan"
+                class="form-textarea"
+                rows="3"
+                placeholder="e.g. Site interviews, small bench prototype, pilot with a few households..."
+                required
+                aria-describedby="validationPlanError"></textarea>
+              <span id="validationPlanError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="expectedOutcome" class="form-label">
+                Expected Outcome <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="expectedOutcome"
+                class="form-textarea"
+                rows="3"
+                placeholder="What do you hope to achieve or learn if this approach works?"
+                required
+                aria-describedby="expectedOutcomeError"></textarea>
+              <span id="expectedOutcomeError" class="field-error" aria-live="polite"></span>
+            </div>
+          </div>
+
+          <!-- Section D — Supporting Material -->
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section D</span>
+              <h2 class="form-section-heading__title">Supporting Material</h2>
+            </div>
+            <p class="form-section-intro">Optionally attach slides, documents, sketches, photos, or video that help explain your proposal.</p>
+
+            <div class="form-group">
+              <label for="supportingMaterialsInput" class="form-label">
+                Supporting Files <span class="optional-label">(Optional)</span>
+              </label>
+              <label class="file-upload-zone" for="supportingMaterialsInput">
+                <div class="file-upload-zone__title">Add supporting materials</div>
+                <div class="file-upload-zone__hint">Select one or more files. Files are listed here for preview only.</div>
+                <div class="file-upload-zone__types">
+                  <span class="file-type-chip">PPT / PPTX</span>
+                  <span class="file-type-chip">PDF</span>
+                  <span class="file-type-chip">Video</span>
+                  <span class="file-type-chip">Design / Sketch</span>
+                  <span class="file-type-chip">Research Doc</span>
+                  <span class="file-type-chip">Photos</span>
+                  <span class="file-type-chip">Other</span>
+                </div>
+              </label>
+              <input
+                type="file"
+                id="supportingMaterialsInput"
+                multiple
+                accept=".ppt,.pptx,.pdf,image/*,video/*,.doc,.docx,.txt"
+                style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;">
+              <ul id="materialsFileList" class="file-list" aria-live="polite"></ul>
+            </div>
+          </div>
+
+          <!-- Section E — Support Needed -->
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section E</span>
+              <h2 class="form-section-heading__title">Support Needed</h2>
+            </div>
+            <p class="form-section-intro">Select at least one kind of support that would help your team move forward.</p>
+
+            <div class="form-group">
+              <span class="form-label">
+                What support would help? <span class="required-mark" aria-hidden="true">*</span>
+              </span>
+              <div class="checkbox-grid" id="supportNeededGrid">
+                <label class="checkbox-pill">
+                  <input type="checkbox" name="supportNeeded" value="Technical mentorship">
+                  <span>Technical mentorship</span>
+                </label>
+                <label class="checkbox-pill">
+                  <input type="checkbox" name="supportNeeded" value="Domain expertise">
+                  <span>Domain expertise</span>
+                </label>
+                <label class="checkbox-pill">
+                  <input type="checkbox" name="supportNeeded" value="Research guidance">
+                  <span>Research guidance</span>
+                </label>
+                <label class="checkbox-pill">
+                  <input type="checkbox" name="supportNeeded" value="Lab/fabrication access">
+                  <span>Lab/fabrication access</span>
+                </label>
+                <label class="checkbox-pill">
+                  <input type="checkbox" name="supportNeeded" value="Materials/equipment">
+                  <span>Materials/equipment</span>
+                </label>
+                <label class="checkbox-pill">
+                  <input type="checkbox" name="supportNeeded" value="Field testing">
+                  <span>Field testing</span>
+                </label>
+                <label class="checkbox-pill">
+                  <input type="checkbox" name="supportNeeded" value="Funding">
+                  <span>Funding</span>
+                </label>
+                <label class="checkbox-pill">
+                  <input type="checkbox" name="supportNeeded" value="Industry connection">
+                  <span>Industry connection</span>
+                </label>
+                <label class="checkbox-pill">
+                  <input type="checkbox" name="supportNeeded" value="Community access">
+                  <span>Community access</span>
+                </label>
+                <label class="checkbox-pill">
+                  <input type="checkbox" name="supportNeeded" value="Other" id="supportNeededOther">
+                  <span>Other</span>
+                </label>
+              </div>
+              <span id="supportNeededError" class="field-error" aria-live="polite"></span>
+
+              <div id="supportOtherWrap" class="form-group" style="display: none; margin-top: 14px;">
+                <label for="supportOtherText" class="form-label">Please describe other support needed</label>
+                <input type="text" id="supportOtherText" class="form-input" placeholder="Describe the additional support you need">
+              </div>
+            </div>
+          </div>
+
+          <!-- Section F — Project Stage -->
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section F</span>
+              <h2 class="form-section-heading__title">Project Stage</h2>
+            </div>
+            <p class="form-section-intro">Indicate where your team is today and share any extra notes for coordinators.</p>
+
+            <div class="form-group">
+              <label for="projectStage" class="form-label">
+                Current Project Stage <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <select id="projectStage" class="form-select" required aria-describedby="projectStageError">
+                <option value="">Select current stage</option>
+                <option value="Just an idea">Just an idea</option>
+                <option value="Exploring the challenge">Exploring the challenge</option>
+                <option value="Developing initial approach">Developing initial approach</option>
+                <option value="Developing/prototyping">Developing/prototyping</option>
+                <option value="Research/prototype underway">Research/prototype underway</option>
+                <option value="Other/not sure">Other/not sure</option>
+              </select>
+              <span id="projectStageError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="additionalNotes" class="form-label">
+                Additional Notes <span class="optional-label">(Optional)</span>
+              </label>
+              <textarea
+                id="additionalNotes"
+                class="form-textarea"
+                rows="2"
+                placeholder="Faculty mentor, semester deadlines, constraints, or other context"></textarea>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              Submit Solution Proposal
+            </button>
+            <a href="explore.html" id="cancelRequestBtn" class="btn btn-outline-subtle">
+              Cancel
+            </a>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer site-footer__clean">
+    <div class="container">
+      <div class="site-footer__top-row">
+        <div class="site-footer__brand-block">
+          <img src="assets/images/logo.png" alt="CivicConnect" class="footer-logo">
+          <p class="site-footer__tagline">From community challenges to shared solutions.</p>
+          <p class="site-footer__summary">
+            CivicConnect connects local challenges with students, universities, researchers and partners to explore practical solutions.
+          </p>
+        </div>
+
+        <div class="site-footer__nav-block">
+          <h3 class="site-footer__nav-heading">Links</h3>
+          <ul class="site-footer__links">
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="citizen-portal.html">Citizen Portal</a></li>
+            <li><a href="student-dashboard.html">Student Dashboard</a></li>
+            <li><a href="partner-support.html">Partner Support</a></li>
+            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom-line">
+        <div>&copy; 2026 CivicConnect &middot; From community challenges to shared solutions.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/student-request.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>

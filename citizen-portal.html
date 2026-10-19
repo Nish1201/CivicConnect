@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Citizen Portal — CivicConnect</title>
+  <meta name="description" content="Report a community problem or check the status of your report on CivicConnect.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__brand" aria-label="CivicConnect Home">
+        <img src="assets/images/logo.png" alt="CivicConnect" class="brand-logo">
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="siteNav">
+        <span class="mobile-nav-toggle__icon"></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="citizen-portal.html" class="nav-link active" aria-current="page">Citizen Portal</a></li>
+          <li><a href="partner-support.html" class="nav-link">Partner Support</a></li>
+          <li><a href="student-dashboard.html" class="nav-link">Student Dashboard</a></li>
+          <li><a href="admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <header class="page-intro">
+    <div class="container">
+      <span class="section-tag">Community Voices</span>
+      <h1 class="page-intro__title">Citizen Portal</h1>
+      <p class="page-intro__desc">
+        Report a local challenge or check the status of a problem you have already submitted.
+      </p>
+    </div>
+  </header>
+
+  <main style="padding: 40px 0 60px 0;">
+    <div class="container">
+
+      <div class="action-pathway-grid">
+        <article class="action-pathway-card action-pathway-card--accent">
+          <span class="action-pathway-card__eyebrow">New report</span>
+          <h2 class="action-pathway-card__title">Report a Problem</h2>
+          <p class="action-pathway-card__desc">
+            Describe a community challenge in everyday language.
+          </p>
+          <a href="report.html" class="btn btn-action">Report a Problem</a>
+        </article>
+
+        <article class="action-pathway-card">
+          <span class="action-pathway-card__eyebrow">Existing reports</span>
+          <h2 class="action-pathway-card__title">Check the Status of Problem Reported</h2>
+          <p class="action-pathway-card__desc">
+            View the status of problems you have submitted.
+          </p>
+          <a href="#reportStatusSection" class="btn btn-secondary" id="checkReportStatusBtn">Check Status</a>
+        </article>
+      </div>
+
+      <section class="dashboard-section" id="reportStatusSection" aria-labelledby="myReportsTitle">
+        <div class="dashboard-section__header">
+          <div class="dashboard-section__title-group">
+            <h2 id="myReportsTitle" class="dashboard-section__title">My Reported Problems</h2>
+            <span class="dashboard-section__count">1 Report</span>
+          </div>
+        </div>
+
+        <div class="problems-grid" aria-label="Citizen reported problems list">
+          <article class="problem-card">
+            <div class="problem-card__top">
+              <div style="display: flex; align-items: center; gap: 6px; flex-wrap: wrap;">
+                <span class="tag-id">CC-001</span>
+                <span class="tag-priority tag-priority--critical">Critical</span>
+                <span class="tag-category">Water</span>
+              </div>
+              <span class="tag-status tag-status--exploring">Exploring</span>
+            </div>
+
+            <h3 class="problem-card__title">Our borewell water becomes dirty during the monsoon</h3>
+
+            <div class="problem-card__location">
+              <span aria-hidden="true">&#9679;</span>
+              <span>Kolhapur, Maharashtra</span>
+            </div>
+
+            <p class="problem-card__desc">
+              During heavy rains our shared borewell water turns muddy and smells unpleasant. Families wait weeks for lab tests, and costly filters clog quickly.
+            </p>
+
+            <div class="problem-card__action">
+              <a href="details.html?id=CC-001" class="view-details-link">
+                View Details <span aria-hidden="true">&rarr;</span>
+              </a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer site-footer__clean">
+    <div class="container">
+      <div class="site-footer__top-row">
+        <div class="site-footer__brand-block">
+          <img src="assets/images/logo.png" alt="CivicConnect" class="footer-logo">
+          <p class="site-footer__tagline">From community challenges to shared solutions.</p>
+          <p class="site-footer__summary">
+            CivicConnect connects local challenges with students, universities, researchers and partners to explore practical solutions.
+          </p>
+        </div>
+        <div class="site-footer__nav-block">
+          <h3 class="site-footer__nav-heading">Links</h3>
+          <ul class="site-footer__links">
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="citizen-portal.html">Citizen Portal</a></li>
+            <li><a href="student-dashboard.html">Student Dashboard</a></li>
+            <li><a href="partner-support.html">Partner Support</a></li>
+            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="site-footer__bottom-line">
+        <div>&copy; 2026 CivicConnect &middot; From community challenges to shared solutions.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

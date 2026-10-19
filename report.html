@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report a Community Problem — CivicConnect</title>
+  <meta name="description" content="Describe a ground-level community challenge in ordinary language so universities and partners can explore possible solutions.">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="index.html" class="site-header__brand" aria-label="CivicConnect Home">
+        <img src="assets/images/logo.png" alt="CivicConnect Logo" class="brand-logo">
+      </a>
+
+      <button class="mobile-nav-toggle" id="mobileNavToggle" aria-label="Toggle navigation menu" aria-expanded="false" aria-controls="siteNav">
+        <span class="mobile-nav-toggle__icon"></span>
+      </button>
+
+      <nav class="site-nav" id="siteNav" aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="index.html" class="nav-link">Home</a></li>
+          <li><a href="explore.html" class="nav-link">Explore</a></li>
+          <li><a href="citizen-portal.html" class="nav-link active" aria-current="page">Citizen Portal</a></li>
+          <li><a href="partner-support.html" class="nav-link">Partner Support</a></li>
+          <li><a href="student-dashboard.html" class="nav-link">Student Dashboard</a></li>
+          <li><a href="admin-dashboard.html" class="nav-link">Admin Dashboard</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <header class="page-intro">
+    <div class="container">
+      <span class="section-tag">Citizen Portal</span>
+      <h1 class="page-intro__title">Describe a Community Problem</h1>
+      <p class="page-intro__desc">
+        Share a local challenge you experience or observe in your neighborhood, village, or town. You only need to describe what is happening—you do not need technical knowledge or solution ideas.
+      </p>
+    </div>
+  </header>
+
+  <main class="report-section">
+    <div class="container">
+
+      <a href="citizen-portal.html" class="details-back-link">
+        <span aria-hidden="true">&larr;</span> Back to Citizen Portal
+      </a>
+
+      <div class="report-panel">
+
+        <div id="reportConfirmation" class="report-confirmation" role="alert" style="display: none;">
+          <h2 class="report-confirmation__title">
+            <span aria-hidden="true">&#10003;</span> Problem Submitted
+          </h2>
+          <p class="report-confirmation__text">
+            Thank you for sharing this community problem. Your description has been received and is ready for review by coordinators, student teams, and partners exploring solutions.
+          </p>
+          <div class="report-confirmation__actions">
+            <button type="button" id="resetFormFromSuccessBtn" class="btn btn-primary">
+              Describe Another Problem
+            </button>
+            <a href="citizen-portal.html" class="btn btn-secondary">
+              Back to Citizen Portal
+            </a>
+          </div>
+        </div>
+
+        <form id="reportProblemForm" novalidate aria-label="Report a Community Problem Form">
+
+          <!-- Section: Problem Details -->
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section A</span>
+              <h2 class="form-section-heading__title">Problem Details</h2>
+            </div>
+            <p class="form-section-intro">Describe the issue in everyday words. Focus on what you observe and how it affects people.</p>
+
+            <div class="form-group">
+              <label for="problemTitle" class="form-label">
+                Problem Title <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <input
+                type="text"
+                id="problemTitle"
+                class="form-input"
+                placeholder="e.g. Seasonal drinking water muddiness after monsoon showers"
+                required
+                aria-describedby="titleHelp titleError">
+              <span id="titleHelp" class="form-helper">A short headline summarizing what is happening.</span>
+              <span id="titleError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="problemDescription" class="form-label">
+                Problem Description <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <textarea
+                id="problemDescription"
+                class="form-textarea"
+                rows="5"
+                placeholder="Explain the challenge in your everyday words. How does it affect daily routines, schooling, health, or farming?"
+                required
+                aria-describedby="descHelp descError"></textarea>
+              <span id="descHelp" class="form-helper">Describe the observed daily impact. No technical solution is needed.</span>
+              <span id="descError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-group">
+              <label for="problemLocation" class="form-label">
+                Location <span class="required-mark" aria-hidden="true">*</span>
+              </label>
+              <div class="location-input-group">
+                <input
+                  type="text"
+                  id="problemLocation"
+                  class="form-input"
+                  placeholder="e.g. Example village, India or Ward 4 near community hospital"
+                  required
+                  aria-describedby="locHelp locError locationStatusMsg">
+                <button type="button" id="useMyLocationBtn" class="btn-location" aria-label="Use My Location via browser geolocation">
+                  <span aria-hidden="true">&#9678;</span> Use My Location
+                </button>
+              </div>
+              <div id="locationStatusMsg" class="location-status-msg" aria-live="polite"></div>
+              <span id="locHelp" class="form-helper">Mention a neighborhood, village, town, ward, or landmark, or use browser location.</span>
+              <span id="locError" class="field-error" aria-live="polite"></span>
+            </div>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="problemCategory" class="form-label">
+                  Broad Category <span class="required-mark" aria-hidden="true">*</span>
+                </label>
+                <select id="problemCategory" class="form-select" required aria-describedby="catHelp catError">
+                  <option value="select">Select a category</option>
+                  <option value="Water">Water</option>
+                  <option value="Agriculture">Agriculture</option>
+                  <option value="Education">Education</option>
+                  <option value="Healthcare">Healthcare</option>
+                  <option value="Sanitation">Sanitation</option>
+                  <option value="Environment">Environment</option>
+                  <option value="Rural Livelihoods">Rural Livelihoods</option>
+                  <option value="Accessibility">Accessibility</option>
+                  <option value="Infrastructure">Infrastructure</option>
+                  <option value="Public Services">Public Services</option>
+                  <option value="Other">Other</option>
+                  <option value="Not sure">Not sure</option>
+                </select>
+                <span id="catHelp" class="form-helper">Pick the topic that best fits, or choose “Not sure”.</span>
+                <span id="catError" class="field-error" aria-live="polite"></span>
+              </div>
+
+              <div class="form-group">
+                <label for="riskLevelSelect" class="form-label">
+                  Observed Risk/Impact
+                </label>
+                <select id="riskLevelSelect" class="form-select" aria-describedby="riskHelp">
+                  <option value="Low">Low</option>
+                  <option value="Medium" selected>Medium</option>
+                  <option value="High">High</option>
+                  <option value="Critical">Critical</option>
+                </select>
+                <span id="riskHelp" class="form-helper">How serious does this issue feel from your perspective?</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Impact Context -->
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section B</span>
+              <h2 class="form-section-heading__title">Impact Context</h2>
+            </div>
+            <p class="form-section-intro">Optional details that help teams understand who is affected and how long this has been going on.</p>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="approxPeopleAffected" class="form-label">
+                  Approximate Number of People Affected <span class="optional-label">(Optional)</span>
+                </label>
+                <input
+                  type="number"
+                  id="approxPeopleAffected"
+                  class="form-input"
+                  min="1"
+                  placeholder="e.g. 50, 300, 1000"
+                  aria-describedby="peopleHelp">
+                <span id="peopleHelp" class="form-helper">Estimated number of residents, farmers, or students affected.</span>
+              </div>
+
+              <div class="form-group">
+                <label for="durationSelect" class="form-label">
+                  How long has this been happening? <span class="optional-label">(Optional)</span>
+                </label>
+                <select id="durationSelect" class="form-select">
+                  <option value="Not sure">Not sure</option>
+                  <option value="Just started">Just started</option>
+                  <option value="A few days">A few days</option>
+                  <option value="A few weeks">A few weeks</option>
+                  <option value="Several months">Several months</option>
+                  <option value="More than a year">More than a year</option>
+                </select>
+              </div>
+
+              <div class="form-group form-group--full">
+                <label for="whoIsAffected" class="form-label">
+                  Specific Groups Affected <span class="optional-label">(Optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="whoIsAffected"
+                  class="form-input"
+                  placeholder="e.g. Local vegetable growers, school children, elderly clinic patients">
+                <span class="form-helper">Describe the community members directly experiencing the issue.</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Supporting Evidence -->
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section C</span>
+              <h2 class="form-section-heading__title">Supporting Evidence</h2>
+            </div>
+            <p class="form-section-intro">Optionally attach a photo or short video that illustrates the challenge.</p>
+
+            <div class="form-group">
+              <label for="supportingEvidenceInput" class="form-label">
+                Photo or Video <span class="optional-label">(Optional)</span>
+              </label>
+              <label class="file-upload-zone" for="supportingEvidenceInput">
+                <div class="file-upload-zone__title">Choose a photo or video</div>
+                <div class="file-upload-zone__hint">Click to select an image or video file from your device.</div>
+                <div class="file-upload-zone__types">
+                  <span class="file-type-chip">Images</span>
+                  <span class="file-type-chip">Video</span>
+                </div>
+              </label>
+              <input
+                type="file"
+                id="supportingEvidenceInput"
+                accept="image/*,video/*"
+                style="position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;"
+                aria-describedby="evidenceHelp">
+              <span id="evidenceHelp" class="form-helper">Optional visual context helps teams understand the situation on the ground.</span>
+              <div id="evidencePreviewWrap" class="form-panel-tinted" style="display: none; margin-top: 12px;">
+                <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+                  <span id="evidenceFileName" style="font-size: 0.88rem; font-weight: 600; color: var(--color-brand-primary);"></span>
+                  <button type="button" id="removeEvidenceBtn" class="btn btn-outline-subtle" style="font-size: 0.82rem; padding: 4px 10px;">Remove</button>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section: Your Contact (Optional) -->
+          <div class="form-section-block">
+            <div class="form-section-heading">
+              <span class="form-section-heading__label">Section D</span>
+              <h2 class="form-section-heading__title">Your Details</h2>
+            </div>
+            <p class="form-section-intro">Contact details are optional. You may leave them blank if you prefer to remain anonymous.</p>
+
+            <div class="form-grid-2">
+              <div class="form-group">
+                <label for="reporterName" class="form-label">
+                  Your Name <span class="optional-label">(Optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="reporterName"
+                  class="form-input"
+                  placeholder="Leave blank to remain anonymous">
+              </div>
+
+              <div class="form-group">
+                <label for="reporterContact" class="form-label">
+                  Contact Information <span class="optional-label">(Optional)</span>
+                </label>
+                <input
+                  type="text"
+                  id="reporterContact"
+                  class="form-input"
+                  placeholder="Phone number or email address">
+              </div>
+            </div>
+          </div>
+
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary">
+              Submit Problem
+            </button>
+            <button type="button" id="clearFormBtn" class="btn btn-outline-subtle">
+              Clear Form
+            </button>
+            <a href="citizen-portal.html" class="btn btn-secondary">
+              Back to Citizen Portal
+            </a>
+          </div>
+
+        </form>
+
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer site-footer__clean">
+    <div class="container">
+      <div class="site-footer__top-row">
+        <div class="site-footer__brand-block">
+          <img src="assets/images/logo.png" alt="CivicConnect" class="footer-logo">
+          <p class="site-footer__tagline">From community challenges to shared solutions.</p>
+          <p class="site-footer__summary">
+            CivicConnect connects local challenges with students, universities, researchers and partners to explore practical solutions.
+          </p>
+        </div>
+
+        <div class="site-footer__nav-block">
+          <h3 class="site-footer__nav-heading">Links</h3>
+          <ul class="site-footer__links">
+            <li><a href="explore.html">Explore</a></li>
+            <li><a href="citizen-portal.html">Citizen Portal</a></li>
+            <li><a href="student-dashboard.html">Student Dashboard</a></li>
+            <li><a href="partner-support.html">Partner Support</a></li>
+            <li><a href="admin-dashboard.html">Admin Dashboard</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="site-footer__bottom-line">
+        <div>&copy; 2026 CivicConnect &middot; From community challenges to shared solutions.</div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/report.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
